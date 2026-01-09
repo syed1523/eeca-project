@@ -1,0 +1,1668 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #e6e9ef;
+    background:
+            radial-gradient(1200px 600px at 10% 0%, rgba(255,255,255,0.05), transparent 45%),
+            radial-gradient(900px 500px at 90% 85%, rgba(255,255,255,0.04), transparent 50%),
+            linear-gradient(160deg, #0c1117 0%, #141b23 55%, #0f141b 100%);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.app-container {
+    max-width: 100%;
+    margin: 0px 0px;
+    padding: 28px 44px 32px 38px;
+    border-radius: 20px;
+    margin-left: 56px; /* collapsed sidebar width */
+    width: calc(100% - 56px);
+    transition: margin-left 0.25s ease, width 0.25s ease;
+    display: flex;
+    flex-direction: column;
+
+    /* 🚫 NO FIXED HEIGHT */
+
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+            radial-gradient(700px 360px at 18% 0%, rgba(255,255,255,0.05), transparent 55%),
+            #151c25;
+
+    box-shadow:
+            0 32px 80px rgba(0,0,0,0.6),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ================= Header ================= */
+
+.dashboard-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 14px 0 16px;
+    margin-bottom: 18px;
+    background:
+            linear-gradient(180deg, rgba(20,26,34,0.98), rgba(20,26,34,0.92));
+    box-shadow:
+            0 10px 24px rgba(0,0,0,0.45),
+            inset 0 -1px 0 rgba(255,255,255,0.04);
+}
+
+h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: rgba(230,233,239,0.78);
+}
+
+/* ================= User Header (NEW – SAFE ADDITION) ================= */
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+            #161d26;
+    box-shadow:
+            0 12px 28px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #93c5fd, #60a5fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0c1117;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e9edf2;
+}
+
+.user-meta {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(230,233,239,0.6);
+}
+
+.user-role {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(147,197,253,0.15);
+    color: #93c5fd;
+    font-weight: 500;
+}
+
+/* ================= Typography ================= */
+
+h3 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #e9edf2;
+}
+
+label {
+    font-size: 13px;
+    color: rgba(230,233,239,0.7);
+}
+
+.last-updated {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(230,233,239,0.55);
+}
+
+/* ================= Controls Layout ================= */
+
+.dashboard-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 28px;
+    align-items: start;
+    margin-top: 26px;
+}
+
+/* ================= Expense Form ================= */
+
+.expense-form {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
+            #161d26;
+    box-shadow:
+            0 16px 36px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.expense-form input,
+.expense-form select {
+    min-width: 160px;
+    padding: 12px 14px;
+    font-size: 14px;
+    background: #1a212b;
+    color: #e6e9ef;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+}
+
+.expense-form button {
+    padding: 12px 26px;
+    font-weight: 600;
+    background: linear-gradient(180deg, #3a4859, #2b3543);
+    color: #f4f6fa;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+/* ================= Summary ================= */
+
+.summary {
+    margin: 34px 0 30px;
+}
+
+.summary-header {
+    margin-bottom: 14px;
+}
+
+.summary-meta {
+    font-size: 12px;
+    color: rgba(230,233,239,0.6);
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.summary-card {
+    height: 128px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    cursor: pointer;
+    background:
+            radial-gradient(240px 120px at 18% 0%, rgba(255,255,255,0.05), transparent 55%),
+            linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)),
+            #1a212b;
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    text-align: left;
+    border: none;
+}
+
+.summary-top {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(230,233,239,0.55);
+}
+
+.summary-number {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.summary-bottom {
+    font-size: 12px;
+    color: rgba(230,233,239,0.65);
+}
+
+.summary-card.active {
+    outline: 2px solid rgba(255,255,255,0.16);
+}
+
+.summary-card.total .summary-number { color: #f1f3f6; }
+.summary-card.approved .summary-number { color: #a7d6c1; }
+.summary-card.warning .summary-number { color: #e6d2a1; }
+.summary-card.violation .summary-number { color: #e2b1b1; }
+
+/* ================= Filter ================= */
+
+.expense-filter {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+            #161d26;
+    box-shadow:
+            0 14px 32px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.expense-filter select {
+    padding: 10px 12px;
+    background: #1a212b;
+    color: #e6e9ef;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ================= Scroll Area ================= */
+
+.dashboard-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* ================= Expense List ================= */
+
+.expense-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+}
+
+.expense-item {
+    position: relative;
+    padding: 16px 18px 18px 22px;
+    border-radius: 20px;
+    background: #161d26;
+    box-shadow:
+            0 22px 48px rgba(0,0,0,0.55),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.expense-item::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 20%;
+    width: 4px;
+    height: 75%;
+    border-radius: 4px;
+    background: #7a9dbb;
+}
+
+.expense-item.approved::before { background: #8fbfb0; }
+.expense-item.warning::before { background: #cbb47a; }
+.expense-item.violation::before { background: #c98f8f; }
+
+.expense-employee {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(230,233,239,0.55);
+    margin-bottom: 8px;
+}
+
+.expense-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.expense-amount {
+    font-size: 22px;
+    font-weight: 800;
+    color: #f4f6fa;
+}
+
+.expense-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.expense-status.approved { color: #a9d8c2; }
+.expense-status.warning { color: #e6d3a3; }
+.expense-status.violation { color: #e4b2b2; }
+
+.expense-remark {
+    font-size: 14px;
+    color: rgba(230,233,239,0.78);
+}
+
+.expense-date {
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(230,233,239,0.62);
+}
+/* ================= Expense Details Modal ================= */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 20, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 420px;
+    border-radius: 18px;
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+            #161d26;
+    box-shadow:
+            0 40px 100px rgba(0,0,0,0.7),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: rgba(230,233,239,0.6);
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(230,233,239,0.75);
+}
+
+.modal-row strong {
+    color: #e9edf2;
+}
+
+.modal-section span {
+    font-size: 12px;
+    color: rgba(230,233,239,0.55);
+}
+
+.modal-section p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: rgba(230,233,239,0.8);
+    line-height: 1.4;
+}
+
+.modal-footer {
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer button {
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #3a4859, #2b3543);
+    color: #f4f6fa;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.status.approved { color: #a7d6c1; }
+.status.warning { color: #e6d2a1; }
+.status.violation { color: #e2b1b1; }
+/* ================= Next Actions ================= */
+
+.next-actions {
+    margin: 24px 0 30px;
+    padding: 20px 22px;
+    border-radius: 18px;
+    background:
+            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+            #161d26;
+    box-shadow:
+            0 20px 44px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.next-actions-meta {
+    font-size: 12px;
+    color: rgba(230,233,239,0.6);
+}
+
+.next-actions-list {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.next-action {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.next-action strong {
+    font-size: 20px;
+    display: block;
+}
+
+.next-action span {
+    font-size: 13px;
+    color: rgba(230,233,239,0.7);
+}
+
+.next-action.danger strong { color: #e2b1b1; }
+.next-action.warning strong { color: #e6d2a1; }
+.next-action.success strong { color: #a7d6c1; }
+
+.next-action.neutral {
+    cursor: default;
+    text-align: center;
+    color: rgba(230,233,239,0.6);
+}
+
+.next-actions-role {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(230,233,239,0.55);
+}
+/* ================= App Shell ================= */
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+/* ================= Sidebar Nav ================= */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    padding: 8px 6px;
+}
+
+/* Sidebar buttons (icon always visible) */
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    color: rgba(230,233,239,0.75);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Icon size */
+.sidebar-btn i {
+    font-size: 18px;
+}
+
+/* ACTIVE */
+.sidebar-btn.active {
+    background: rgba(147,197,253,0.15);
+    color: #93c5fd;
+    font-weight: 600;
+}
+
+/* ===== EXPANDED MODE ===== */
+.app-shell.sidebar-open .sidebar-btn {
+    justify-content: flex-start;
+    padding: 12px 14px;
+}
+
+/* Text hidden when collapsed */
+.sidebar-btn span {
+    display: none;
+}
+
+/* Text visible only when expanded */
+.app-shell.sidebar-open .sidebar-btn span {
+    display: inline;
+}
+/* ================= Hamburger Fix ================= */
+
+.sidebar-toggle {
+    width: 40px;
+    height: 40px;
+    margin: 14px auto 18px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: #e6e9ef;
+    font-size: 18px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent hamburger from inheriting nav styles */
+.sidebar-toggle i,
+.sidebar-toggle svg {
+    pointer-events: none;
+}
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logout-btn {
+    margin-left: 16px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #cfd8e3;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1e90ff, #0f5fbf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #fff;
+}
+.dashboard-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+}
+.app-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    color: #e6eef5;
+}
+
+.logo-badge {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #1e90ff, #0f5fbf);
+    color: #ffffff;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+.app-logo {
+    position: relative;
+}
+
+.app-logo::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 28px;
+    height: 3px;
+    background: #1e90ff;
+    border-radius: 2px;
+}
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2b1200, #1a0a00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 880px;
+    height: 460px;
+    background: #ffffff;
+    border-radius: 22px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* LEFT VISUAL PANEL */
+.login-visual {
+    flex: 1;
+    padding: 36px;
+    background:
+            linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.9)),
+            linear-gradient(135deg, #ff7a00, #ffb347);
+    color: #ffffff;
+    display: flex;
+    align-items: flex-start;
+}
+
+.login-visual h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* RIGHT FORM PANEL */
+.login-form-wrapper {
+    flex: 1;
+    padding: 42px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-brand {
+    margin-bottom: 24px;
+}
+
+.brand-icon {
+    font-size: 1.4rem;
+    color: #ff7a00;
+}
+
+.login-brand h3 {
+    margin: 6px 0 2px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.login-brand p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.login-form label {
+    display: block;
+    font-size: 0.75rem;
+    color: #555;
+    margin-bottom: 6px;
+    margin-top: 14px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 0.85rem;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #ff7a00;
+}
+
+.login-btn {
+    margin-top: 22px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ff7a00, #ff9f1a);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    opacity: 0.95;
+}
+
+.login-footer {
+    margin-top: 14px;
+    font-size: 0.75rem;
+    text-align: center;
+    color: #777;
+}
+
+.login-footer span {
+    color: #ff7a00;
+    cursor: pointer;
+}
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1e90ff, #0f5fbf);
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-btn {
+    margin-left: 16px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #cfd8e3;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+/* ===============================
+   MANAGER DASHBOARD
+================================ */
+
+.manager-dashboard {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.manager-dashboard .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.manager-dashboard h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e9edf2;
+}
+
+.manager-dashboard .btn-refresh {
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    background: linear-gradient(180deg, #3a4859, #2b3543);
+    color: #f4f6fa;
+    cursor: pointer;
+}
+
+.manager-dashboard .action-message {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    background: rgba(147,197,253,0.12);
+    color: #93c5fd;
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.review-table thead th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(230,233,239,0.55);
+    padding: 0 14px;
+}
+
+.review-table tbody tr {
+    background: #161d26;
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    border-radius: 16px;
+}
+
+.review-table tbody td {
+    padding: 16px 14px;
+    font-size: 14px;
+    color: rgba(230,233,239,0.82);
+}
+
+.review-table tbody tr td:first-child {
+    border-radius: 16px 0 0 16px;
+}
+
+.review-table tbody tr td:last-child {
+    border-radius: 0 16px 16px 0;
+}
+
+.action-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-approve,
+.btn-reject,
+.btn-escalate {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-approve {
+    background: rgba(167,214,193,0.15);
+    color: #a7d6c1;
+}
+
+.btn-reject {
+    background: rgba(226,177,177,0.15);
+    color: #e2b1b1;
+}
+
+.btn-escalate {
+    background: rgba(230,210,161,0.15);
+    color: #e6d2a1;
+}
+
+/* ===============================
+   AUDITOR DASHBOARD
+================================ */
+
+.auditor-dashboard {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.audit-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.audit-card {
+    height: 120px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background:
+            radial-gradient(240px 120px at 18% 0%, rgba(255,255,255,0.05), transparent 55%),
+            linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)),
+            #1a212b;
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.audit-card p {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: rgba(230,233,239,0.55);
+}
+
+.audit-card span {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.audit-card.approved span { color: #a7d6c1; }
+.audit-card.warning span { color: #e6d2a1; }
+.audit-card.violation span { color: #e2b1b1; }
+
+.audit-section h3 {
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.audit-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.audit-table thead th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: rgba(230,233,239,0.55);
+    padding: 0 14px;
+}
+
+.audit-table tbody tr {
+    background: #161d26;
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.04);
+    border-radius: 16px;
+}
+
+.audit-table tbody td {
+    padding: 14px;
+    font-size: 14px;
+    color: rgba(230,233,239,0.82);
+}
+
+.audit-table tbody tr td:first-child {
+    border-radius: 16px 0 0 16px;
+}
+
+.audit-table tbody tr td:last-child {
+    border-radius: 0 16px 16px 0;
+}
+
+.audit-table.compact tbody td {
+    padding: 12px 14px;
+}
+/* =========================
+   FORCE 1 COLUMN = TRUE ROWS
+========================== */
+
+/* =========================
+   3 × 3 MATRIX CARD LAYOUT
+========================== */
+
+.expense-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* ✅ 3 COLUMNS */
+    gap: 20px;
+}
+/* =====================================
+   THEME TOGGLE ICON BUTTON
+===================================== */
+
+.theme-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #e6e9ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.theme-icon-btn:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* =====================================
+   LIGHT MODE OVERRIDES
+   (SAFE — DARK MODE UNTOUCHED)
+===================================== */
+
+.app-shell.light {
+    background:
+            linear-gradient(180deg, #f4f6fa, #eef2f7);
+    color: #1f2937;
+}
+
+/* MAIN CONTAINER */
+.app-shell.light .app-container {
+    background:
+            linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)),
+            #ffffff;
+    box-shadow:
+            0 30px 80px rgba(0,0,0,0.12);
+}
+
+/* HEADER */
+.app-shell.light .dashboard-top {
+    background:
+            linear-gradient(180deg, #ffffff, #f5f7fb);
+    box-shadow:
+            0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* LOGO */
+.app-shell.light .logo-title {
+    color: #1e293b;
+}
+
+/* USER HEADER */
+.app-shell.light .user-header {
+    background: #ffffff;
+    box-shadow:
+            0 10px 24px rgba(0,0,0,0.12);
+}
+
+.app-shell.light .user-name {
+    color: #111827;
+}
+
+.app-shell.light .user-meta {
+    color: #6b7280;
+}
+
+/* BUTTONS */
+.app-shell.light .logout-btn {
+    background: rgba(0,0,0,0.04);
+    color: #1f2937;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* SUMMARY / CARDS */
+.app-shell.light .summary-card,
+.app-shell.light .expense-item,
+.app-shell.light .next-actions,
+.app-shell.light .expense-filter,
+.app-shell.light .audit-card,
+.app-shell.light .review-table tbody tr {
+    background: #ffffff;
+    box-shadow:
+            0 14px 32px rgba(0,0,0,0.12);
+}
+
+/* EXPENSE STATUS COLORS */
+.app-shell.light .expense-status.approved { color: #15803d; }
+.app-shell.light .expense-status.warning { color: #b45309; }
+.app-shell.light .expense-status.violation { color: #b91c1c; }
+
+/* TEXT */
+.app-shell.light h3 {
+    color: #111827;
+}
+
+.app-shell.light label,
+.app-shell.light .summary-meta,
+.app-shell.light .last-updated {
+    color: #6b7280;
+}
+
+/* SIDEBAR */
+.app-shell.light .sidebar-btn {
+    color: #374151;
+}
+
+.app-shell.light .sidebar-btn.active {
+    background: rgba(30,144,255,0.15);
+    color: #1e90ff;
+}
+
+/* FILTER INPUTS */
+.app-shell.light .expense-form input,
+.app-shell.light .expense-form select,
+.app-shell.light .expense-filter select {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+/* =====================================
+   LIGHT MODE — CARD IDENTITY & DEPTH
+===================================== */
+
+/* General card polish */
+.app-shell.light .summary-card,
+.app-shell.light .next-actions,
+.app-shell.light .expense-item,
+.app-shell.light .audit-card {
+    background:
+            linear-gradient(180deg, #ffffff, #f9fafb);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.10);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover lift */
+.app-shell.light .summary-card:hover,
+.app-shell.light .expense-item:hover,
+.app-shell.light .audit-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+            0 26px 60px rgba(0,0,0,0.14);
+}
+
+/* =====================================
+   NEXT ACTIONS — UNIQUE LOOK
+===================================== */
+
+.app-shell.light .next-actions {
+    background:
+            linear-gradient(135deg, #f8fbff, #eef5ff);
+    border-left: 4px solid #1e90ff;
+}
+
+/* Numbers stand out */
+.app-shell.light .next-action strong {
+    font-size: 26px;
+}
+
+/* =====================================
+   SUMMARY CARDS — SECTION ACCENTS
+===================================== */
+
+.app-shell.light .summary-card.total {
+    border-top: 4px solid #94a3b8;
+}
+
+.app-shell.light .summary-card.approved {
+    border-top: 4px solid #22c55e;
+}
+
+.app-shell.light .summary-card.warning {
+    border-top: 4px solid #f59e0b;
+}
+
+.app-shell.light .summary-card.violation {
+    border-top: 4px solid #ef4444;
+}
+
+/* =====================================
+   EXPENSE ITEM — SOFTER SEPARATION
+===================================== */
+
+.app-shell.light .expense-item {
+    position: relative;
+}
+
+.app-shell.light .expense-item::before {
+    opacity: 0.6;
+}
+
+/* =====================================
+   SECTION HEADERS — BETTER VISIBILITY
+===================================== */
+
+.app-shell.light .expense-list-title,
+.app-shell.light .summary-header h3,
+.app-shell.light .audit-section h3 {
+    color: #0f172a;
+    letter-spacing: -0.2px;
+}
+
+/* =====================================
+   SUBTEXT / META
+===================================== */
+
+.app-shell.light .summary-meta,
+.app-shell.light .next-actions-meta,
+.app-shell.light .expense-list-meta {
+    color: #64748b;
+}
+/* =====================================
+   LIGHT MODE — CARD IDENTITY & DEPTH
+===================================== */
+
+/* General card polish */
+.app-shell.light .summary-card,
+.app-shell.light .next-actions,
+.app-shell.light .expense-item,
+.app-shell.light .audit-card {
+    background:
+            linear-gradient(180deg, #ffffff, #f9fafb);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow:
+            0 18px 40px rgba(0,0,0,0.10);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover lift */
+.app-shell.light .summary-card:hover,
+.app-shell.light .expense-item:hover,
+.app-shell.light .audit-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+            0 26px 60px rgba(0,0,0,0.14);
+}
+
+/* =====================================
+   NEXT ACTIONS — UNIQUE LOOK
+===================================== */
+
+.app-shell.light .next-actions {
+    background:
+            linear-gradient(135deg, #f8fbff, #eef5ff);
+    border-left: 4px solid #1e90ff;
+}
+
+/* Numbers stand out */
+.app-shell.light .next-action strong {
+    font-size: 26px;
+}
+
+/* =====================================
+   SUMMARY CARDS — SECTION ACCENTS
+===================================== */
+
+.app-shell.light .summary-card.total {
+    border-top: 4px solid #94a3b8;
+}
+
+.app-shell.light .summary-card.approved {
+    border-top: 4px solid #22c55e;
+}
+
+.app-shell.light .summary-card.warning {
+    border-top: 4px solid #f59e0b;
+}
+
+.app-shell.light .summary-card.violation {
+    border-top: 4px solid #ef4444;
+}
+
+/* =====================================
+   EXPENSE ITEM — SOFTER SEPARATION
+===================================== */
+
+.app-shell.light .expense-item {
+    position: relative;
+}
+
+.app-shell.light .expense-item::before {
+    opacity: 0.6;
+}
+
+/* =====================================
+   SECTION HEADERS — BETTER VISIBILITY
+===================================== */
+
+.app-shell.light .expense-list-title,
+.app-shell.light .summary-header h3,
+.app-shell.light .audit-section h3 {
+    color: #0f172a;
+    letter-spacing: -0.2px;
+}
+
+/* =====================================
+   SUBTEXT / META
+===================================== */
+
+.app-shell.light .summary-meta,
+.app-shell.light .next-actions-meta,
+.app-shell.light .expense-list-meta {
+    color: #64748b;
+}
+/* =====================================
+   LIGHT MODE — DEPTH & ELEVATION FIX
+===================================== */
+
+/* Core card elevation */
+.app-shell.light .summary-card,
+.app-shell.light .expense-item,
+.app-shell.light .audit-card,
+.app-shell.light .next-actions {
+    background:
+            linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #f5f9ff 100%
+            );
+    border: 1px solid rgba(30,144,255,0.12);
+    box-shadow:
+            0 10px 30px rgba(30,144,255,0.15),
+            0 1px 0 rgba(255,255,255,0.9) inset;
+    position: relative;
+}
+
+/* Subtle highlight strip */
+.app-shell.light .summary-card::after,
+.app-shell.light .expense-item::after,
+.app-shell.light .audit-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+            90deg,
+            rgba(30,144,255,0.4),
+            rgba(30,144,255,0.05)
+    );
+    border-radius: 16px 16px 0 0;
+}
+
+/* Hover = real elevation */
+.app-shell.light .summary-card:hover,
+.app-shell.light .expense-item:hover,
+.app-shell.light .audit-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+            0 18px 50px rgba(30,144,255,0.22),
+            0 1px 0 rgba(255,255,255,0.9) inset;
+}
+
+/* =====================================
+   NEXT ACTIONS — STRONGER IDENTITY
+===================================== */
+
+.app-shell.light .next-actions {
+    background:
+            linear-gradient(135deg, #f0f6ff, #ffffff);
+    border-left: 5px solid #1e90ff;
+}
+
+/* =====================================
+   SUMMARY CARD ACCENTS — BOLDER
+===================================== */
+
+.app-shell.light .summary-card.total {
+    border-top: 4px solid #64748b;
+}
+
+.app-shell.light .summary-card.approved {
+    border-top: 4px solid #22c55e;
+}
+
+.app-shell.light .summary-card.warning {
+    border-top: 4px solid #f59e0b;
+}
+
+.app-shell.light .summary-card.violation {
+    border-top: 4px solid #ef4444;
+}
+
+/* =====================================
+   TEXT CONTRAST BOOST
+===================================== */
+
+.app-shell.light h3,
+.app-shell.light .summary-number {
+    color: #0f172a;
+}
+
+.app-shell.light .summary-meta,
+.app-shell.light .last-updated {
+    color: #475569;
+}
+/* =====================================
+   LIGHT MODE — TEXT CONTRAST FIX
+===================================== */
+
+/* Card headings */
+.app-shell.light .summary-top,
+.app-shell.light .audit-card p,
+.app-shell.light .next-actions-meta {
+    color: #334155; /* slate-700 */
+    font-weight: 600;
+}
+
+/* Big numbers */
+.app-shell.light .summary-number,
+.app-shell.light .audit-card span,
+.app-shell.light .next-action strong {
+    color: #0f172a; /* slate-900 */
+}
+
+/* Card subtext */
+.app-shell.light .summary-bottom,
+.app-shell.light .next-action span,
+.app-shell.light .expense-remark {
+    color: #475569; /* slate-600 */
+}
+
+/* Expense metadata */
+.app-shell.light .expense-employee,
+.app-shell.light .expense-date,
+.app-shell.light .summary-meta,
+.app-shell.light .last-updated {
+    color: #64748b; /* slate-500 */
+}
+
+/* Status labels (stronger contrast) */
+.app-shell.light .expense-status.approved {
+    color: #15803d;
+}
+
+.app-shell.light .expense-status.warning {
+    color: #b45309;
+}
+
+.app-shell.light .expense-status.violation {
+    color: #b91c1c;
+}
+
+/* Audit table text */
+.app-shell.light .audit-table tbody td {
+    color: #1e293b;
+}
+/* =====================================
+   LIGHT MODE — MANAGER DASHBOARD FIX
+===================================== */
+
+/* Section title */
+.app-shell.light .manager-dashboard h2 {
+    color: #0f172a; /* slate-900 */
+}
+
+/* Table headers */
+.app-shell.light .review-table thead th {
+    color: #475569; /* slate-600 */
+}
+
+/* Table rows */
+.app-shell.light .review-table tbody tr {
+    background: #ffffff;
+    box-shadow:
+            0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* Table cells */
+.app-shell.light .review-table tbody td {
+    color: #1e293b; /* slate-800 */
+}
+
+/* Status text */
+.app-shell.light .review-table .status.approved {
+    color: #15803d;
+    font-weight: 600;
+}
+
+.app-shell.light .review-table .status.warning {
+    color: #b45309;
+    font-weight: 600;
+}
+
+.app-shell.light .review-table .status.violation {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+/* Manager action buttons */
+.app-shell.light .btn-approve {
+    background: rgba(34, 197, 94, 0.12);
+    color: #15803d;
+}
+
+.app-shell.light .btn-reject {
+    background: rgba(239, 68, 68, 0.12);
+    color: #b91c1c;
+}
+
+.app-shell.light .btn-escalate {
+    background: rgba(234, 179, 8, 0.15);
+    color: #92400e;
+}
+
+/* Hover clarity */
+.app-shell.light .btn-approve:hover,
+.app-shell.light .btn-reject:hover,
+.app-shell.light .btn-escalate:hover {
+    filter: brightness(0.95);
+}
+/* =====================================
+   LIGHT MODE — AUDITOR DASHBOARD FIX
+===================================== */
+
+/* Section titles */
+.app-shell.light .auditor-dashboard h3,
+.app-shell.light .auditor-dashboard h2 {
+    color: #0f172a; /* slate-900 */
+}
+
+/* Meta text */
+.app-shell.light .auditor-dashboard .last-updated,
+.app-shell.light .auditor-dashboard p {
+    color: #475569; /* slate-600 */
+}
+
+/* === FREQUENT VIOLATORS & CATEGORY LISTS === */
+
+.app-shell.light .auditor-dashboard .audit-row,
+.app-shell.light .auditor-dashboard .audit-item {
+    background: #ffffff;
+    color: #1e293b;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+
+    box-shadow:
+            0 10px 30px rgba(15, 23, 42, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Labels (Employee ID / Category) */
+.app-shell.light .auditor-dashboard .audit-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+/* Values (Counts) */
+.app-shell.light .auditor-dashboard .audit-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2563eb; /* blue-600 */
+}
+
+/* Section headers */
+.app-shell.light .auditor-dashboard .audit-section h3 {
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+/* Hover polish */
+.app-shell.light .auditor-dashboard .audit-row:hover,
+.app-shell.light .auditor-dashboard .audit-item:hover {
+    transform: translateY(-2px);
+    box-shadow:
+            0 16px 40px rgba(37, 99, 235, 0.12);
+}
+
+/* Divider line fix */
+.app-shell.light .auditor-dashboard hr {
+    border: none;
+    height: 1px;
+    background: rgba(37, 99, 235, 0.15);
+}
+
+/* =========================================
+   FORCE LIGHT MODE — AUDITOR TABLE FIX
+========================================= */
+
+.app-shell.light .audit-table tbody tr {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow:
+            0 12px 32px rgba(37, 99, 235, 0.10),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+}
+
+/* Table cells */
+.app-shell.light .audit-table tbody td {
+    color: #1e293b !important;
+    font-weight: 500;
+}
+
+/* Header row */
+.app-shell.light .audit-table thead th {
+    color: #475569 !important;
+}
+
+/* Status colors */
+.app-shell.light .audit-table .status.approved {
+    color: #16a34a !important;
+    font-weight: 700;
+}
+
+.app-shell.light .audit-table .status.warning {
+    color: #d97706 !important;
+    font-weight: 700;
+}
+
+.app-shell.light .audit-table .status.violation {
+    color: #dc2626 !important;
+    font-weight: 700;
+}
+
+/* Remark text */
+.app-shell.light .audit-table .remark {
+    color: #334155 !important;
+}
+
+/* Hover polish */
+.app-shell.light .audit-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow:
+            0 18px 44px rgba(37, 99, 235, 0.18);
+}
