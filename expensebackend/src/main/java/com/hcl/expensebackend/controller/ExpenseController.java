@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://eeca-project-mg1668jlz-syeds-projects-a197ffd1.vercel.app"
+})
 @RestController
 @RequestMapping("/api/expenses")
 public class ExpenseController {
